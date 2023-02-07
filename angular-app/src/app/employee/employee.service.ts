@@ -8,7 +8,7 @@ import { EmployeeResource, EmployeeResourceList } from './interfaces/resource';
   providedIn: 'root',
 })
 export class EmployeeService {
-  private API_URL = 'http://localhost:8090/api/v1/official-stamps';
+  private API_URL = 'http://localhost:8090/api/employees';
 
   constructor(private http: HttpClient) {}
 

@@ -97,6 +97,24 @@ export class EmployeeComponent {
     });
   }
 
+  onDelete(employee: EmployeeResponse): void {
+    this.loading = true;
+    this.service
+      .delete(employee.id)
+      .pipe(
+        finalize(() => {
+          this.loading = false;
+        })
+      )
+      .subscribe(() => {
+        const index = this.dataSource.data.findIndex(
+          (r) => r.id === employee.id
+        );
+        this.dataSource.data.splice(index, 1);
+        this.dataSource.data = [...this.dataSource.data];
+      });
+  }
+
   private getAllEmployees() {
     this.loading = true;
     this.service
@@ -143,6 +161,7 @@ export class EmployeeComponent {
       .subscribe((data) => {
         const index = this.dataSource.data.findIndex((r) => r.id === data.id);
         this.dataSource.data[index] = data;
+        this.dataSource.data = [...this.dataSource.data];
       });
   }
 }
