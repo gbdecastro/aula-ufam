@@ -1,0 +1,104 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$angular-app-primary: mat.define-palette(mat.$indigo-palette);
+$angular-app-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$angular-app-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$angular-app-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $angular-app-primary,
+      accent: $angular-app-accent,
+      warn: $angular-app-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($angular-app-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+table {
+  .mat-header-row .mat-header-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+  }
+
+  .mat-row {
+    .mat-cell {
+      border-bottom: 8px solid white;
+      .toggle-button-container {
+        button {
+          min-width: 32px;
+          line-height: 16px;
+          font-size: 10px;
+          min-height: 24px;
+        }
+      }
+    }
+    background-color: #f5f5f5;
+  }
+
+  .no-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 56px;
+  }
+}
+
+mat-card-header {
+  padding-bottom: 1rem !important;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.app-dialog {
+  div[mat-dialog-title] {
+    display: flex;
+    align-items: center;
+    height: 70px;
+    padding-bottom: 0;
+  }
+  div[mat-dialog-actions] {
+    justify-content: end;
+    padding: 2rem;
+  }
+  mat-dialog-container {
+    padding: 2rem;
+  }
+}
+
+.text-simple {
+  color: #e0e0e0;
+}
